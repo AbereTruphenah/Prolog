@@ -1,0 +1,28 @@
+%Maize diseases
+%Facts:
+has_symptom(olive_green_colored_powdery_mould).
+has_symptom(galls_on_leaves).
+has_symptom(grey_mould_on_ears).
+has_symptom(blue-green_powdery_mould_on_and_between_kernels).
+has_symptom(pink_coloured_fungal_growth).
+has_symptom(dark-green_fuzzy_mould_between_kernels).
+has_symptom(bright_pink_to_red_discolouration_at_the_nodes).
+has_symptom(raised_rust_coloured_pusfules_on_the_leaf).
+symptom_for(olive_green_colored_powdery_mould,aspergillus_ear_rot).
+symptom_for(galls_on_leaves,common_rust).
+symptom_for(grey_mould_on_ears,diplodia_ear_rot).
+symptom_for(blue-green_powdery_mould_on_and_between_kernels,penicillium_ear_rot).
+symptom_for(pink_coloured_fungal_growth,fusarium_ear_rot).
+symptom_for(dark-green_fuzzy_mould_between_kernels,trichoderma_ear_rot).
+symptom_for(bright_pink_to_red_discolouration_at_the_nodes,gibberella_stalk_rot).
+symptom_for(raised_rust_coloured_pusfules_on_the_leaf,common_rust).
+%Rules:
+detect_disease(X,Y):-
+    has_symptom(X),symptom_for(X,Y).
+%Likely disease
+input:-
+    write('Enter symptom observed:'),nl,
+    read(X),nl,
+    detect_disease(X,Y),nl,
+
+    format('Crop likely to have ~w.~n',[Y]).
